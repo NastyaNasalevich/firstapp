@@ -1,0 +1,9 @@
+CREATE TABLE user (
+  id       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('ROLE_ADMIN', 'ROLE_USER') NOT NULL
+);
+
+INSERT INTO user VALUES (1, 'Nastya', '12345678', 'ROLE_ADMIN');
+
