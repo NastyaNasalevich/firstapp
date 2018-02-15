@@ -1,0 +1,1 @@
+INSERT INTO user VALUES (1, 'Nastya', '12345678', 'ROLE_ADMIN');
