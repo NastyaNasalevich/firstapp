@@ -15,12 +15,14 @@ public class JwtUserDetails implements UserDetails {
 
     private Long id;
     private String username;
+    private String email;
     private String password;
     private Set<GrantedAuthority> authorities;
 
     public JwtUserDetails(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
+        this.email = user.getEmail();
         this.password = user.getPassword();
         this.authorities = new HashSet<>();
         this.authorities.add(new SimpleGrantedAuthority(user.getRole().name()));
@@ -37,8 +39,8 @@ public class JwtUserDetails implements UserDetails {
     }
 
     @Override
-    public String getUsername() {
-        return this.username;
+    public String getEmail() {
+        return this.email;
     }
 
     @Override
