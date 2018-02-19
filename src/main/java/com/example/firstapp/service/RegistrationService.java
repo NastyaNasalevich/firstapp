@@ -28,6 +28,7 @@ import java.util.Optional;
 public class RegistrationService {
 
     private final JavaMailSender javaMailSender;
+
     private final UserRepository userRepository;
     private final RegistrationUserTransformer registrationUserTransformer;
     private final UnconfirmedUserRepository unconfirmedUserRepository;
