@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "unconfirmed_registration_data")
+@Table(name = "unconfirmedUser")
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -26,12 +26,6 @@ public class UnconfirmedUser {
 
     @Column(name = "email")
     private String email;
-
-    @Column(name = "image")
-    private String image;
-
-    @Column(name = "expiration_time")
-    private int expirationTime;
 
     @Column(name = "registration_hash")
     private String registrationHash;

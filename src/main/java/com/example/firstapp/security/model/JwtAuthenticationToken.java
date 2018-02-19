@@ -30,8 +30,8 @@ public class JwtAuthenticationToken implements Authentication {
     }
 
     @Override
-    public String getEmail() {
-        return Objects.isNull(this.userDetails) ? null : this.userDetails.getEmail();
+    public String getName() {
+        return Objects.isNull(this.userDetails) ? null : this.userDetails.getUsername();
     }
 
     @Override

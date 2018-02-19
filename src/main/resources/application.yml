@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/firstapp8?useSSL=false
-    username: root
-    password: 4444
-    driver-class-name: com.mysql.jdbc.Driver
+    url: postgres://pxrboxduqtemtw:35a6e7ed47eef65ce9874bbdebbbb7a3c2c81cf2f61addb276ebb428c2aa1bc1@ec2-54-247-81-88.eu-west-1.compute.amazonaws.com:5432/ddekcjvkssncqt
+    username: pxrboxduqtemtw
+    password: 35a6e7ed47eef65ce9874bbdebbbb7a3c2c81cf2f61addb276ebb428c2aa1bc1
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect

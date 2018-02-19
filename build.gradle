@@ -41,5 +41,5 @@ dependencies {
 	compile group: 'com.google.guava', name: 'guava', version: '19.0'
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.1'
 
-	runtime('mysql:mysql-connector-java')
+	runtime('mysql:postgresql-connector-java')
 }

@@ -12,12 +12,10 @@ import java.security.SecureRandom;
 @RequiredArgsConstructor
 public class UnconfirmedUserTransformer {
 
-    private int registrationExpirationTime = 1000000;
 
     public UnconfirmedUser makeEntity(RegistrationRequestDto registrationRequestDto) {
         UnconfirmedUser unconfirmedUser = new UnconfirmedUser();
 
-        unconfirmedUser.setExpirationTime(registrationExpirationTime);
         unconfirmedUser.setUsername(registrationRequestDto.getUsername());
         unconfirmedUser.setEmail(registrationRequestDto.getEmail());
         unconfirmedUser.setPassword(registrationRequestDto.getPassword());
@@ -31,5 +29,4 @@ public class UnconfirmedUserTransformer {
         String hash = bCryptPasswordEncoder.encode(username);
         return hash;
     }
-
 }

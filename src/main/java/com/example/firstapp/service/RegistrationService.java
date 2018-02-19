@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
-import javax.mail.SendFailedException;
 import javax.mail.internet.MimeMessage;
 import java.util.Optional;
 
@@ -35,7 +34,6 @@ public class RegistrationService {
     private final UnconfirmedUserTransformer unconfirmedUserTransformer;
 
 
-    @Override
     public RegistrationResponseDto register(RegistrationRequestDto registrationRequest) {
 
         String email = Optional.ofNullable(registrationRequest.getEmail())
@@ -81,14 +79,10 @@ public class RegistrationService {
             helper.setSubject("Please confirm your email address");
             helper.setText("<html><body>To confirm registration go to: <a href='http://localhost:8080/registration/" + registrationHash+"'>Confirm login</a></body></html>", true);
             javaMailSender.send(message);
-        } catch (MessagingException exception) {
-            throw new SendFailedException("Cannot send mail.\n" +
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            throw new RegistrationException("Cannot send mail.\n" +
                     "Registration data deleted.\nRecipient : " + to);
         }
-    }
-
-    @Override
-    public void clearExpiredRegistrationData() {
-        unconfirmedUserRepository.deleteByExpirationTimeLessThan(System.currentTimeMillis());
     }
 }
