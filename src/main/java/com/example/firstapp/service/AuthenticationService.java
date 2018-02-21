@@ -33,13 +33,13 @@ public class AuthenticationService {
 
     public LoginResponseDto login(final LoginRequestDto loginRequestDto) {
         try {
-            String email = Optional.ofNullable(loginRequestDto.getEmail())
-                    .orElseThrow(() -> new BadCredentialsException("Email should be passed."));
+            String username = Optional.ofNullable(loginRequestDto.getUsername())
+                    .orElseThrow(() -> new BadCredentialsException("Username should be passed."));
 
             String password = Optional.ofNullable(loginRequestDto.getPassword())
                     .orElseThrow(() -> new BadCredentialsException("Password should be passed."));
 
-            UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(email,
+            UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username,
                     password);
 
             // Try to authenticate with this token
@@ -62,7 +62,7 @@ public class AuthenticationService {
             }
 
         } catch (BadCredentialsException exception) {
-            throw new JsonException("Email or password was incorrect. Please try again.", exception);
+            throw new JsonException("Username or password was incorrect. Please try again.", exception);
         }
     }
 
@@ -73,8 +73,8 @@ public class AuthenticationService {
     @Transactional(readOnly = true)
     public AuthUserDto getMe() {
         Authentication authentication = SecurityHelper.getAuthenticationWithCheck();
-        User byEmail = userRepository.findByEmail(authentication.getName());
+        User byUsername = userRepository.findUserByUsername(authentication.getName());
 
-        return authUserTransformer.makeDto(byEmail);
+        return authUserTransformer.makeDto(byUsername);
     }
 }

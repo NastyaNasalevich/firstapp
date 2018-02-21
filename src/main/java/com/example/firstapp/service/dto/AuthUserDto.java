@@ -8,7 +8,7 @@ import lombok.Setter;
 public class AuthUserDto implements Dto {
 
     private long id;
-    private String email;
+    private String username;
     private String role;
 
 }

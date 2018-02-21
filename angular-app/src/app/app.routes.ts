@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: './users/users.module'
+  },
+  {
+    path: 'registration',
+    loadChildren: './registration/registration.module'
   }
 ];
 

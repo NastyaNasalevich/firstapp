@@ -1,0 +1,36 @@
+<div class="col-sm-6 col-sm-offset-3" style="margin: auto">
+  <h1>
+    <i class="fas fa-user-plus"></i>
+    Registration form
+  </h1>
+
+  <form #f="ngForm" (ngSubmit)="f.form.valid && registr()" method="post">
+    <div class="form-group">
+      <input type="text" class="form-control"
+             [class.is-invalid]="f.submitted && !username.valid"
+             [class.is-valid]="username.valid" maxlength="30" minlength="3"
+             placeholder="username" name="username" id="username"
+             [(ngModel)]="newUser.username" #username="ngModel" required>
+      <div class="invalid-feedback">Username is required</div>
+    </div>
+
+    <div class="form-group">
+      <input type="password" class="form-control" placeholder="password"
+             id="password" name="password"
+             [class.is-invalid]="f.submitted && !password.valid"
+             [class.is-valid]="password.valid" maxlength="25" minlength="5"
+             [(ngModel)]="newUser.password" #password="ngModel" required>
+      <div class="invalid-feedback">Password is required</div>
+    </div>
+
+    <div class="form-group">
+      <input type="email" class="form-control" placeholder="email" name="email"
+             [class.is-invalid]="f.submitted && !email.valid"
+             [class.is-valid]="email.valid"
+             [(ngModel)]="newUser.email" #email="ngModel" required email>
+      <div class="invalid-feedback">Username is required</div>
+    </div>
+
+    <button class="btn btn-primary">Sign up</button>
+  </form>
+</div>

@@ -47,6 +47,7 @@ public class RegistrationService {
                 .orElseThrow(() -> new BadCredentialsException("Username should be passed."));
 
         checkEmailExist(email);
+        checkUsernameExist(username);
         UnconfirmedUser unconfirmedUser = unconfirmedUserTransformer.makeEntity(registrationRequest);
         unconfirmedUserRepository.save(unconfirmedUser);
         sendConfirmationMessage(unconfirmedUser.getEmail(), unconfirmedUser.getRegistrationHash());
@@ -61,7 +62,7 @@ public class RegistrationService {
     }
 
     private void checkEmailExist(String email) {
-        User user = userRepository.findByEmail(email);
+        User user = userRepository.findUserByEmail(email);
         if (user != null) {
             throw new RegistrationException("User with such email already exist.");
         }
@@ -69,6 +70,17 @@ public class RegistrationService {
         UnconfirmedUser unconfirmedUser = unconfirmedUserRepository.findByEmail(email);
         if(unconfirmedUser != null) {
             unconfirmedUserRepository.deleteByEmail(email);
+        }
+    }
+
+    private void checkUsernameExist(String username) {
+        User user = userRepository.findUserByUsername(username);
+        if (user != null) {
+            throw new RegistrationException("User with such username already exist.");
+        }
+        UnconfirmedUser unconfirmedUser = unconfirmedUserRepository.findByUsername(username);
+        if (unconfirmedUser != null) {
+            throw new RegistrationException("User with such username already exist.");
         }
     }
 

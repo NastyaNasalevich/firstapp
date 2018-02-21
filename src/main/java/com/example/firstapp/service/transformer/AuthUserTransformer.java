@@ -13,7 +13,7 @@ public class AuthUserTransformer {
         AuthUserDto authUserDto = new AuthUserDto();
 
         authUserDto.setId(user.getId());
-        authUserDto.setEmail(user.getEmail());
+        authUserDto.setUsername(user.getUsername());
         authUserDto.setRole(user.getRole().name());
 
         return authUserDto;

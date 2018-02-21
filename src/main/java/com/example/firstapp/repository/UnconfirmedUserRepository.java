@@ -10,5 +10,6 @@ public interface UnconfirmedUserRepository extends JpaRepository<UnconfirmedUser
     void deleteByEmail(String email);
 
     UnconfirmedUser findByEmail(String email);
+    UnconfirmedUser findByUsername(String username);
     UnconfirmedUser findByRegistrationHash(String registrationHash);
 }

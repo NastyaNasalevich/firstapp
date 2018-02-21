@@ -10,7 +10,7 @@ public class UserListTransformer {
     public UserListDto makeDto(final User user) {
         UserListDto dto = new UserListDto();
         dto.setId(user.getId());
-        dto.setEmail(user.getEmail());
+        dto.setUsername(user.getUsername());
         dto.setRole(user.getRole().name());
 
         return dto;
