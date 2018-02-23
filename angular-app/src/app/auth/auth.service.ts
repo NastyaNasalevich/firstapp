@@ -35,7 +35,7 @@ export class AuthService {
 
     return this.http
       .post(
-        `${environment.serverUrl}registration/user`,
+        `${environment.serverUrl}registration`,
         JSON.stringify(newUser),
         {headers}
       )

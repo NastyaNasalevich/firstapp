@@ -13,10 +13,6 @@ public class RegistrationUserTransformer {
 
     private final PasswordEncoder passwordEncoder;
 
-    public UnconfirmedUser makeDto(User user) {
-        throw new UnsupportedOperationException();
-    }
-
     public User makeEntity(UnconfirmedUser unconfirmedUser) {
         User user = new User();
         user.setUsername(unconfirmedUser.getUsername());

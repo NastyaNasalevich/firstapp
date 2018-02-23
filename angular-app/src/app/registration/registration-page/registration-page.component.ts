@@ -18,7 +18,7 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/login';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.newUser = new RegistrationUser();
   }
 

@@ -31,4 +31,18 @@ public class UserService {
 
         return userDtoList;
     }
+
+    public void deleteCurrentUser() {
+        User user = getAuthUser();
+        userRepository.deleteByUsername(user.getUsername());
+    }
+
+    @Transactional
+    public boolean setBlockingStatus(List<UserListDto> users, boolean block) {
+        for (UserListDto user: users) {
+            userRepository.setBlockChanges(block, user.getId());
+        }
+        return true;
+    }
+
 }
