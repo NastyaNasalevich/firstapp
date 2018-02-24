@@ -12,7 +12,6 @@ import java.sql.Date;
 @Table(name = "comments")
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"user", "project"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Comment {

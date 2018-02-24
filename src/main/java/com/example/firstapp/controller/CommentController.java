@@ -10,17 +10,4 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CommentController {
 
-    private final CommentService commentService;
-
-    @PreAuthorize("isAuthenticated()")
-    @PostMapping(value = "/create")
-    public Boolean createComment(@RequestBody CommentDto commentDto) {
-        return commentService.saveComment(commentDto);
-    }
-
-    @PreAuthorize("isAuthenticated()")
-    @PostMapping(value = "/delete")
-    public Boolean deleteComment(@RequestBody CommentDto commentDto) {
-        return commentService.deleteComment(commentDto);
-    }
 }

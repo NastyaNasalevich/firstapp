@@ -29,36 +29,35 @@ public class FanficController {
         return fanficService.getFullFanfic(fanficId);
     }
 
-    @GetMapping(value = "/main_page")
-    public Map<String, Object> getMainPageFanfics() {
-        return fanficService.getMainPageFanfics();
-    }
-
-    @GetMapping(value = "/tag/{tagName}")
-    public Map<String, Object> getProjectsByTags(@PathVariable String tagName) {
-        return tagService.findProjectsNextPageByTag(tagName);
-    }
-
-    @PreAuthorize("isAuthenticated()")
-    @PostMapping(value = "/create")
-    public Boolean createFanfic(@RequestBody FanficListDto projectDto, JwtAuthenticationToken token) {
-        JwtUserDetails jwtUserDetails = (JwtUserDetails) token.getPrincipal();
-        User user = userRepository.findUserByUsername(jwtUserDetails.getUsername());
-        if(user !=null) {
-            return fanficService.createFanfic(projectDto, user);
-        }
-    }
-
-    @PreAuthorize("isAuthenticated()")
-    @PostMapping(value = "/update")
-    public Boolean updateFanfic(@RequestBody FanficListDto fanficListDto) {
-        return fanficService.updateFanfic(fanficListDto);
-    }
-
     @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/my")
     public List<FanficListDto> getMyFanfics() {
         return fanficService.getMyFanfics();
     }
 
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping(value = "/create")
+    public Boolean createFanfic(@RequestBody FanficListDto fanficListDto, JwtAuthenticationToken token) {
+        JwtUserDetails jwtUserDetails = (JwtUserDetails) token.getPrincipal();
+        User user = userRepository.findUserByUsername(jwtUserDetails.getUsername());
+        if(user !=null) {
+            return fanficService.createFanfic(fanficListDto, user);
+        }
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping(value = "/update")
+    public Boolean updateFanfic(@RequestBody FanficListDto fanficListDto, JwtAuthenticationToken token) {
+        JwtUserDetails jwtUserDetails = (JwtUserDetails) token.getPrincipal();
+        User user = userRepository.findUserByUsername(jwtUserDetails.getUsername());
+        if(user !=null) {
+            return fanficService.updateFanfic(fanficListDto, user);
+        }
+    }
+
+    @GetMapping(value = "/main_page")
+    public Map<String, Object> getMainPageFanfics() {
+        return fanficService.getMainPageFanfics();
+    }
 }

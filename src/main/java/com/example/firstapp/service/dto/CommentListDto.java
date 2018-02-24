@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Component
 public class CommentListDto {
 }

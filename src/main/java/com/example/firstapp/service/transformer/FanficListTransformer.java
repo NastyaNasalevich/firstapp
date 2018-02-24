@@ -40,7 +40,7 @@ public class FanficListTransformer {
         fanfic.setTitle(fanficListDto.getTitle());
         fanfic.setCreatorUser(user);
         fanfic.setCreationDate(new Timestamp(new Date().getTime()));
-        fanfic.setCreatorUser(userRepository.findUserByUsername(fanficListDto.getCreatorUser());
+        fanfic.setCreatorUser(userRepository.findUserByUsername(fanficListDto.getCreatorUser()));
         fanfic.setDescription(fanficListDto.getDescription());
         fanfic.setGenre(Genre.valueOf(fanficListDto.getGenre()));
         fanfic.setImage(fanficListDto.getImage());

@@ -2,7 +2,6 @@ package com.example.firstapp.service;
 
 import com.example.firstapp.exceptions.FanficSavingException;
 import com.example.firstapp.model.Fanfic;
-import com.example.firstapp.model.Tag;
 import com.example.firstapp.model.User;
 import com.example.firstapp.repository.FanficRepository;
 import com.example.firstapp.repository.TagRepository;
@@ -29,9 +28,7 @@ public class FanficService {
 
     private final FanficRepository fanficRepository;
     private final FanficListTransformer fanficListTransformer;
-    private final UserRepository userRepository;
     private final FanficPreviewTransformer fanficPreviewTransformer;
-    private final TagRepository tagRepository;
 
     private Pageable newFanfics = new PageRequest(0, 8);
 
@@ -58,8 +55,8 @@ public class FanficService {
         return true;
     }
 
-    public Boolean updateFanfic(FanficListDto fanficListDto) {
-        Fanfic fanfic = fanficListTransformer.makeEntity(fanficListDto);
+    public Boolean updateFanfic(FanficListDto fanficListDto, User user) {
+        Fanfic fanfic = fanficListTransformer.makeEntity(fanficListDto, user);
         fanfic.setId(fanficListDto.getId());
         fanficRepository.saveAndFlush(fanfic);
         return true;
@@ -68,7 +65,7 @@ public class FanficService {
     public Map<String, Object> getMainPageFanfics() {
         Map<String, Object> result = new HashMap<>();
         Page<Fanfic> newFanficCurrentPage = fanficRepository.findAllByOrderByIdDesc(newFanfics);
-        result.put("page", fanficPreviewTransformer.makeDto(newFanficCurrentPage.getContent()));
+        result.put("page", fanficPreviewTransformer.makeDtoList(newFanficCurrentPage.getContent()));
         newFanfics = isLastPageCheck(newFanficCurrentPage, result) ?
                 newFanfics.first() : newFanfics.next();
         return result;

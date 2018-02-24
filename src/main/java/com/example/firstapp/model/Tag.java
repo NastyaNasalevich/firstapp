@@ -10,7 +10,6 @@ import java.util.List;
 @Table(name = "tags")
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"projects"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Tag {

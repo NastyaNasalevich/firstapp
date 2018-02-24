@@ -2,6 +2,7 @@ package com.example.firstapp.service;
 
 import com.example.firstapp.model.User;
 import com.example.firstapp.repository.UserRepository;
+import com.example.firstapp.security.SecurityHelper;
 import com.example.firstapp.service.dto.UserListDto;
 import com.example.firstapp.service.transformer.UserListTransformer;
 import lombok.RequiredArgsConstructor;
@@ -33,9 +34,10 @@ public class UserService {
     }
 
     public void deleteCurrentUser() {
-        User user = getAuthUser();
-        userRepository.deleteByUsername(user.getUsername());
+        User user = userRepository.findUserByUsername(SecurityHelper.getAuthenticationWithCheck().getName());
+        userRepository.deleteUserByUsername(user.getUsername());
     }
+
 
     @Transactional
     public boolean setBlockingStatus(List<UserListDto> users, boolean block) {
