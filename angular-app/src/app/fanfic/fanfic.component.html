@@ -1,0 +1,65 @@
+<div class="jumbotron page-size">
+  <div class="container global-offset">
+    Author: <span class="highlight-username" (click)="clickOnName(post.user)">{{post.user.username}}</span>
+    <span class="date">{{post.date}}</span>
+    <h2>{{post.name}}</h2>
+    <p>{{post.description}}</p>
+    <span class="badge" *ngFor="let tag of post.tags" [routerLink]="['/posts/tag', tag.name]">{{tag.name}}</span>
+    <div class="post-rating">
+      <div *ngIf="userRate == null && auth.loggedIn()">
+        <span>Rate this post </span>
+        <div class="btn-group" role="group" aria-label="" >
+          <button type="button" class="btn btn-default" (click)="ratePost(1)">1</button>
+          <button type="button" class="btn btn-default" (click)="ratePost(2)">2</button>
+          <button type="button" class="btn btn-default" (click)="ratePost(3)">3</button>
+          <button type="button" class="btn btn-default" (click)="ratePost(4)">4</button>
+          <button type="button" class="btn btn-default" (click)="ratePost(5)">5</button>
+        </div>
+      </div>
+      <span *ngIf="userRate != null">Your rate is {{userRate.value}}</span>
+      <p>Post rating {{avgRating}}</p>
+    </div>
+    <div id="page-body" class="page-body">
+      <header *ngIf="ifHorizontal" class="header-horizontal">
+        <div class="pagination-div" *ngFor="let page of pages; let i = index" (click)="onPageClick(i)">
+          {{i + 1}}
+        </div>
+      </header>
+      <header *ngIf="!ifHorizontal" class="header-vertical dropdown nav navbar-nav navbar-left">
+        <a class="dropdown-toggle a-color-white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li *ngFor="let page of pages; let i = index" (click)="onPageClick(i)">
+            <a>Page {{i + 1}}</a>
+          </li>
+        </ul>
+      </header>
+      <div id="drop-zone" class="drop-zone">
+        <div [hidden]="!receivedData.length > 0"  *ngFor="let data of receivedData"
+             [ngStyle]="{
+              left: data.x + 'px',
+              top: data.y +'px',
+              position: 'absolute',
+              wordWrap: 'break-word',
+              maxWidth: calculateElementWidthInPercents(data.x)
+            }"
+             [innerHTML]="getSanitizer(data.inner)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="jumbotron page-size leave-a-comment-field" *ngIf="auth.loggedIn()">
+  <div class="container global-offset">
+    <p>Leave a comment:</p>
+    <textarea rows="6" contenteditable="false" class="text-area-field" [(ngModel)]="commentToAdd.value"></textarea>
+    <button type="button" class="btn btn-primary" (click)="leaveCommentClick()">Leave a comment</button>
+  </div>
+</div>
+<div class="jumbotron page-size leave-a-comment-field" *ngFor="let comment of post.comments">
+  <div class="container global-offset">
+    Author: <span class="highlight-username" (click)="clickOnName(comment.user)">{{comment.user.username}}</span>
+    <span class="glyphicon glyphicon-remove remove-glyph" aria-hidden="true" *ngIf="editValidation(comment.user)" (click)="removeCommentClick(comment)"></span>
+    <span class="date">{{comment.date}}</span>
+    <p>{{comment.value}}</p>
+  </div>
+</div>

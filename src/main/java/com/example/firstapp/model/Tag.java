@@ -16,15 +16,15 @@ public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "tag_id")
+    @Column(name = "id")
     private Long id;
 
-    @ManyToMany(mappedBy = "tags", cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST},
-            fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "fanfics_tags", joinColumns = @JoinColumn(name = "tag_id"),
+            inverseJoinColumns = @JoinColumn(name = "fanfic_id"))
     private List<Fanfic> fanfics;
 
     @Column(name = "tag_name")
     @Field
     private String tagName;
-
 }

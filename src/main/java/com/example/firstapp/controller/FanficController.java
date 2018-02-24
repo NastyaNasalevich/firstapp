@@ -10,6 +10,7 @@ import com.example.firstapp.service.dto.FanficListDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,7 +45,9 @@ public class FanficController {
         if(user !=null) {
             return fanficService.createFanfic(fanficListDto, user);
         }
+        return false;
     }
+
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping(value = "/update")
@@ -54,6 +57,19 @@ public class FanficController {
         if(user !=null) {
             return fanficService.updateFanfic(fanficListDto, user);
         }
+        return false;
+    }
+
+    @GetMapping(value = "/delete", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public boolean deletePost(@RequestParam Long id, JwtAuthenticationToken token) {
+        JwtUserDetails jwtUserDetails = (JwtUserDetails) token.getPrincipal();
+        User user = userRepository.findUserByUsername(jwtUserDetails.getUsername());
+        if(user !=null && (token.getAuthorities().contains(new SimpleGrantedAuthority("admin")) || user.getUsername().equals(jwtUserDetails.getUsername()))){
+            fanficService.deleteFanfic(id);
+            return true;
+        }
+        return false;
     }
 
     @GetMapping(value = "/main_page")

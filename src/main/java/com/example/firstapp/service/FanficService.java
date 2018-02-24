@@ -62,6 +62,10 @@ public class FanficService {
         return true;
     }
 
+    public void deleteFanfic(Long id) {
+        fanficRepository.delete(id);
+    }
+
     public Map<String, Object> getMainPageFanfics() {
         Map<String, Object> result = new HashMap<>();
         Page<Fanfic> newFanficCurrentPage = fanficRepository.findAllByOrderByIdDesc(newFanfics);

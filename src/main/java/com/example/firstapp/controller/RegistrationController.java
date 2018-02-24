@@ -1,11 +1,15 @@
 package com.example.firstapp.controller;
 
+import com.example.firstapp.model.RegistrationResponseStatus;
 import com.example.firstapp.service.RegistrationService;
 import com.example.firstapp.service.dto.RegistrationRequestDto;
 import com.example.firstapp.service.dto.RegistrationResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping(value = "/registration", produces = MediaType.APPLICATION_JSON_VALUE)

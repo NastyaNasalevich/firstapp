@@ -16,20 +16,18 @@ import java.util.List;
 public class Chapter {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "title")
     private String title;
 
     @Lob
-    private String content;
+    @Column(name = "textBlock")
+    private String textBlock;
 
-    private String imageURL;
-
-    @OneToMany(targetEntity = Comment.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @IndexedEmbedded
-    private List<Comment> comments;
-
-    @OneToMany(mappedBy = "id.fanfic", cascade = CascadeType.ALL)
-    private List<Rating> ratings;
+    @ManyToOne
+    @JoinColumn(name = "main_fanfic")
+    private Fanfic mainFamnfic;
 }

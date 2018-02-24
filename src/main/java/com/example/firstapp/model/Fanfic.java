@@ -20,7 +20,7 @@ public class Fanfic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "fanfic_id")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "title")
@@ -50,6 +50,6 @@ public class Fanfic {
     @IndexedEmbedded
     private List<Tag> tags;
 
-    @OneToMany(targetEntity = Chapter.class, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "mainFanfic", fetch = FetchType.LAZY)
     private List<Chapter> chapters;
 }

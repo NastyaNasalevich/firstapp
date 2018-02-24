@@ -3,6 +3,7 @@ package com.example.firstapp.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -26,6 +27,9 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "creatorUser", fetch = FetchType.LAZY)
+    private Set<Fanfic> fanfics;
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)

@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ChapterDTO {
 
+    private Long id;
     private String title;
     private String textBlock;
-    private String imageURL;
 
 }
