@@ -45,10 +45,11 @@ CREATE TABLE tags (
 DROP TABLE IF EXISTS chapters;
 
 CREATE TABLE chapters (
-  id           INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title        VARCHAR(255) NOT NULL,
-  textBlock    VARCHAR(255) NOT NULL,
-  mainFanfic   VARCHAR(255) NOT NULL
+  id            INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  title         VARCHAR(255) NOT NULL,
+  creation_date DATE         NOT NULL,
+  textBlock     VARCHAR(255) NOT NULL,
+  mainFanfic    VARCHAR(255) NOT NULL
 );
 
 DROP TABLE IF EXISTS fanfics_tags;

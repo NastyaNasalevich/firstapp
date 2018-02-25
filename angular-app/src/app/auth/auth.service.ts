@@ -51,4 +51,8 @@ export class AuthService {
     return this.authHttp.get(`${environment.serverUrl}auth/me`).map(res => res.json());
   }
 
+  public getUser() {
+    return CurrentUser[0];
+  }
+
 }

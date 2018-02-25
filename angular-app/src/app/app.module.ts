@@ -6,14 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {AuthModule} from "./auth/auth.module";
 import {routing} from './app.routes';
-import { MainComponent } from './main/main.component';
 import { FanficComponent } from './fanfic/fanfic.component';
+import { ChapterComponent } from './chapter/chapter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
     FanficComponent,
+    ChapterComponent,
   ],
   imports: [
     routing,
