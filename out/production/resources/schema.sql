@@ -45,10 +45,10 @@ CREATE TABLE tags (
 DROP TABLE IF EXISTS chapters;
 
 CREATE TABLE chapters (
-  id           INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title        VARCHAR(255) NOT NULL,
-  textBlock    VARCHAR(255) NOT NULL,
-  mainFanfic   VARCHAR(255) NOT NULL
+  id            INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  title         VARCHAR(255) NOT NULL,
+  textBlock     VARCHAR(255) NOT NULL,
+  mainFanfic    VARCHAR(255) NOT NULL
 );
 
 DROP TABLE IF EXISTS fanfics_tags;
@@ -56,6 +56,25 @@ DROP TABLE IF EXISTS fanfics_tags;
 CREATE TABLE fanfics_tags (
   fanfic_id VARCHAR(255) NOT NULL,
   tag_id    VARCHAR(255) NOT NULL,
-  CONSTRAINT FK_STUDENT_ID FOREIGN KEY (fanfic_id) REFERENCES fanfics (id),
-  CONSTRAINT FK_UNIVERSITY_ID FOREIGN KEY (tag_id) REFERENCES tags (id)
+  CONSTRAINT FK_FANFIC_ID FOREIGN KEY (fanfic_id) REFERENCES fanfics (id),
+  CONSTRAINT FK_TAG_ID FOREIGN KEY (tag_id) REFERENCES tags (id)
+);
+
+DROP TABLE IF EXISTS comments;
+
+CREATE TABLE comments (
+  id            INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  creation_date DATE         NOT NULL,
+  content       VARCHAR(255) NOT NULL,
+  project_id    VARCHAR(255) NOT NULL,
+  user_id       VARCHAR(255) NOT NULL
+);
+
+DROP TABLE IF EXISTS ratings;
+
+CREATE TABLE ratings (
+  id            INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  value         INT          NOT NULL,
+  id_chapter    VARCHAR(255) NOT NULL,
+  id_user       VARCHAR(255) NOT NULL
 );

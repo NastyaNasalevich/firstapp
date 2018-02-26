@@ -30,11 +30,10 @@ public class Comment {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_id")
-    private Fanfic fanfic;
+    @JoinColumn(name = "chapter_id")
+    private Chapter chapter;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    @IndexedEmbedded
     private User user;
 }

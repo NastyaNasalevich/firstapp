@@ -5,7 +5,6 @@ import com.example.firstapp.repository.UserRepository;
 import com.example.firstapp.security.model.JwtAuthenticationToken;
 import com.example.firstapp.security.model.JwtUserDetails;
 import com.example.firstapp.service.FanficService;
-import com.example.firstapp.service.TagService;
 import com.example.firstapp.service.dto.FanficListDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -22,7 +21,6 @@ import java.util.Map;
 public class FanficController {
 
     private final FanficService fanficService;
-    private final TagService tagService;
     private final UserRepository userRepository;
 
     @GetMapping(value = "/{fanficId}")
@@ -65,7 +63,7 @@ public class FanficController {
     public boolean deletePost(@RequestParam Long id, JwtAuthenticationToken token) {
         JwtUserDetails jwtUserDetails = (JwtUserDetails) token.getPrincipal();
         User user = userRepository.findUserByUsername(jwtUserDetails.getUsername());
-        if(user !=null && (token.getAuthorities().contains(new SimpleGrantedAuthority("admin")) || user.getUsername().equals(jwtUserDetails.getUsername()))){
+        if(user !=null && (token.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN")) || user.getUsername().equals(jwtUserDetails.getUsername()))){
             fanficService.deleteFanfic(id);
             return true;
         }

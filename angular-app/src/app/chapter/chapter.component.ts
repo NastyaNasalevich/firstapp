@@ -133,7 +133,7 @@ export class ChapterComponent implements OnInit {
   }
 
   editValidation(user: User){
-    if(user.id == this.auth.getUser().id || this.auth.getUser().roles[0].role == 'ROLE_ADMIN'){
+    if(user.id == this.auth.getUser().id || this.auth.getUser().role == 'ROLE_ADMIN'){
       return true;
     }
     return false;

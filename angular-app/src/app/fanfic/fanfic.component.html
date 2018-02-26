@@ -7,71 +7,85 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Bootstrap 101 Template</title>
 
-  <!-- Bootstrap -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-</head>
-<body>
-
-<div class="jumbotron page-size">
-  <div class="container global-offset">
-    Author: <span class="highlight-username" (click)="clickOnName(fanfic.user)">{{fanfic.user.username}}</span>
-    <span class="date">{{fanfic.date}}</span>
-    <h2>{{fanfic.name}}</h2>
-    <p>{{fanfic.description}}</p>
-    <span class="badge" *ngFor="let tag of fanfic.tags" [routerLink]="['/fanfics/tag', tag.name]">{{tag.name}}</span>
-
-    <div id="page-body" class="page-body">
-      <header *ngIf="ifHorizontal" class="header-horizontal">
-        <div class="pagination-div" *ngFor="let page of pages; let i = index" (click)="onPageClick(i)">
-          {{i + 1}}
-        </div>
-      </header>
-      <header *ngIf="!ifHorizontal" class="header-vertical dropdown nav navbar-nav navbar-left">
-        <a class="dropdown-toggle a-color-white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li *ngFor="let page of pages; let i = index" (click)="onPageClick(i)">
-            <a>Page {{i + 1}}</a>
+<div class="row builder-field">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <button type="button" class="btn btn-default navbar-btn" dnd-draggable [dragEnabled]="true" [dragData]="imageData">
+              Image
+              <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="btn btn-default navbar-btn" dnd-draggable [dragEnabled]="true" [dragData]="textData">
+              Text
+              <span class="glyphicon glyphicon-text-background" aria-hidden="true"></span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="btn btn-default navbar-btn" dnd-draggable [dragEnabled]="true" [dragData]="videoData">
+              Video
+              <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
+            </button>
           </li>
         </ul>
-      </header>
-      <div id="drop-zone" class="drop-zone">
-        <div [hidden]="!receivedData.length > 0"  *ngFor="let data of receivedData"
-             [ngStyle]="{
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <button type="button" class="btn btn-default navbar-btn" (click)="addPage()">
+              Add Page
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </button>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Navigation Bar<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li [class.active]="ifHorizontal" (click)="clickOnH()"><a>Horizontal</a></li>
+              <li [class.active]="!ifHorizontal" (click)="clickOnV()"><a>Vertical</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--<div class="click2edit">click2edit</div>-->
+  <ul class="nav nav-tabs" dnd-sortable-container [dropZones]="[pages]" [sortableData]="pages">
+    <li role="presentation" *ngFor="let page of pages; let i = index" dnd-sortable [sortableIndex]="i" [class.active]="page.id == selectedRow" (click)="onPageClick(i, page)">
+      <a>Page {{page.id + 1}}</a>
+    </li>
+  </ul>
+  <div id="page-body" class="page-body">
+    <header *ngIf="ifHorizontal" class="header-horizontal">
+      <div class="pagination-div" *ngFor="let page of pages; let i = index">
+        {{i + 1}}
+      </div>
+    </header>
+    <header *ngIf="!ifHorizontal" class="header-vertical dropdown nav navbar-nav navbar-left">
+      <a class="dropdown-toggle a-color-white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages<span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li *ngFor="let page of pages; let i = index">
+          <a>Page {{i + 1}}</a>
+        </li>
+      </ul>
+    </header>
+    <div id="drop-zone" class="drop-zone" dnd-droppable (onDropSuccess)="transferDataSuccess($event)">
+      <div class="dnd-element" dnd-draggable (onDragStart)="dragDataSuccess($event)" [dragEnabled]="true" [hidden]="!receivedData.length > 0"  *ngFor="let data of receivedData"
+           [dragData]="data"
+           [id]="data.id"
+           [ngStyle]="{
               left: data.x + 'px',
               top: data.y +'px',
               position: 'absolute',
               wordWrap: 'break-word',
               maxWidth: calculateElementWidthInPercents(data.x)
             }"
-             [innerHTML]="getSanitizer(data.inner)">
-        </div>
-      </div>
+           (click)="getFunction(data)" [innerHTML]="data.inner"></div>
     </div>
-
-
+  </div>
+  <div>
+    <button type="button" class="btn btn-default btn-info" (click)="saveContentOfCurrentPage()">Save</button>
   </div>
 </div>
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-</body>
-</html>

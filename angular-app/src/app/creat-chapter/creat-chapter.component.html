@@ -1,0 +1,28 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<div class="jumbotron page-size">
+  <div class="container">
+    <div class="alert alert-danger" role="alert" *ngIf="!haveName">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" ></span>
+      <span class="sr-only">Error:</span>
+      Enter at least name of the chapter!
+    </div>
+    <div class="input-group chapter-name-block">
+      <span class="input-group-addon" id="sizing-addon1">Chapter name:</span>
+      <input type="text" class="form-control" placeholder="Chapter name..." aria-describedby="sizing-addon1" [(ngModel)]="newChapter.name">
+    </div>
+    <app-builder></app-builder>
+    <br>
+    <p>Enter chapter text:</p>
+    <textarea rows="8" contenteditable="false" class="text-area-field" [(ngModel)]="newChapter.content"></textarea>
+    <button type="button" class="btn btn-primary" (click)="createNewChapterClick()">Create chapter</button><br>
+  </div>
+</div>

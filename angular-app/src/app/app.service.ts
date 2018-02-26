@@ -30,16 +30,21 @@ export class AppService {
 
   public addComment(comment: Comment){
     let body = JSON.stringify(comment);
-    return this.makePostRequest('/fanfic/chapter/addComment', body).map(res => <number> res.json()).catch(this.handleError);
+    return this.makeChapterRequest('/fanfic/chapter/addComment', body).map(res => <number> res.json()).catch(this.handleError);
   }
 
-  private makePostRequest(path: string, body: string){
+  private makeChapterRequest(path: string, body: string){
     return this.http.post(this.backEndServer + path, body, this.getRequestOptions());
   }
 
   public rateChapter(rating: any){
     let body = JSON.stringify(rating);
-    return this.makePostRequest('/rating', body).map(res => res.json()).catch(this.handleError);
+    return this.makeChapterRequest('/rating', body).map(res => res.json()).catch(this.handleError);
+  }
+
+  public addChapter(chapter: Chapter){
+    let body = JSON.stringify(chapter);
+    return this.makeChapterRequest('/createChapter', body).map(res => <number> res.json()).catch(this.handleError);
   }
 
   private getRequestOptions() {
