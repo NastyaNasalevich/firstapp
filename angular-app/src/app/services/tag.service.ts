@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {API_URL} from '../constants/API';
+import {URL} from "../constants";
 import {Observable} from "rxjs/Observable";
 
 @Injectable()

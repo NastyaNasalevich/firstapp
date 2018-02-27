@@ -3,7 +3,7 @@ import {CommentComponent} from "../components/comment/comment.component";
 export class Chapter {
   id: number;
   title: string;
-  content: "";
+  content: string;
   userId: number;
   rating = 0;
   isRated = true;

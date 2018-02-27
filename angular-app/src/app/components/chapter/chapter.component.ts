@@ -4,7 +4,7 @@ import {Comment} from "../../model/comment";
 import {Router, ActivatedRoute} from "@angular/router";
 import {User} from "../../model/user";
 import {Rating} from "../../model/rating";
-import {Language} from "angular-l10n";
+//import {Language} from "angular-l10n";
 import {ChapterService} from "../../services/chapter.service";
 import {FanficService} from "../../services/fanfic.service";
 import {UserService} from "../../services/user.service";
@@ -18,7 +18,7 @@ import {CommentService} from "../../services/comment.service";
 })
 export class ChapterComponent implements OnInit {
 
-  @Language() lang;
+//  @Language() lang;
   private id: number;
   private myChapter = false;
   private currentUser: User;

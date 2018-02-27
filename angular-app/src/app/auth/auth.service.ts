@@ -3,7 +3,6 @@ import {Http, Headers} from "@angular/http";
 import { environment } from '../../environments/environment';
 import {AuthConfigConsts, AuthHttp} from "angular2-jwt";
 import {Router} from "@angular/router";
-import {RegistrationUser} from "../model/RegistrationUser";
 
 @Injectable()
 export class AuthService {
@@ -27,18 +26,6 @@ export class AuthService {
       .do(token => {
         localStorage.setItem(AuthConfigConsts.DEFAULT_TOKEN_NAME, token.token);
       });
-  }
-
-  registr(newUser: RegistrationUser) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    return this.http
-      .post(
-        `${environment.serverUrl}registration`,
-        JSON.stringify(newUser),
-        {headers}
-      )
   }
 
   logout() {

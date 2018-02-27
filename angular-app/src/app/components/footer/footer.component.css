@@ -1,0 +1,10 @@
+.footer,
+.push {
+  height: 50px;
+}
+
+.txt-railway {
+  font-size: 20px;
+  font-weight: 100;
+  margin-top: -15px;
+}

@@ -14,10 +14,6 @@ const routes: Routes = [
     path: 'users',
     loadChildren: './users/users.module'
   },
-  {
-    path: 'registration',
-    loadChildren: './registration/registration.module'
-  }
 ];
 
 export const routing = RouterModule.forRoot(routes);

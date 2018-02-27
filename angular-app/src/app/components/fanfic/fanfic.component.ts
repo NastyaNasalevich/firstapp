@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Fanfic} from "../../model/fanfic";
-import {Language} from "angular-l10n";
+//import {Language} from "angular-l10n";
 import {User} from "../../model/user";
 import {ChapterService} from "../../services/chapter.service";
 import {Chapter} from "../../model/chapter";
@@ -17,7 +17,7 @@ import {UserService} from "../../services/user.service";
 })
 export class FanficComponent implements OnInit {
 
-  @Language() lang;
+//  @Language() lang;
   private id: number;
   private fanfic: Fanfic;
   private myFanfic = false;
