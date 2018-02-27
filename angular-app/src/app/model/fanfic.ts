@@ -1,15 +1,14 @@
 import {User} from "./user";
-import {Tag} from "./tag";
-import {Chapter} from "./chapter";
+import {ChapterComponent} from "../components/chapter/chapter.component";
 
-export interface Fanfic {
-  id: number,
-  title: string,
-  user: User,
-  date: Date,
-  description: string,
-  genre: string,
-  image: String,
-  tags: Tag[],
-  chapters: Chapter[]
+export class Fanfic {
+  id: number;
+  title: string;
+  userId: number;
+  description: string;
+  genre: string;
+  image = 'http://res.cloudinary.com/soaringbird/image/upload/v1519734001/FreeVector-Book-Icon.jpg';
+  tags: string[] = [];
+  chapters: ChapterComponent[] = [];
 }
+

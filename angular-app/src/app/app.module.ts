@@ -6,11 +6,12 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {AuthModule} from "./auth/auth.module";
 import {routing} from './app.routes';
-import { FanficComponent } from './fanfic/fanfic.component';
-import { ChapterComponent } from './chapter/chapter.component';
+import { FanficComponent } from './components/fanfic/fanfic.component';
+import { ChapterComponent } from './components/chapter/chapter.component';
 import { CreatChapterComponent } from './creat-chapter/creat-chapter.component';
 import { CreatFanficComponent } from './creat-fanfic/creat-fanfic.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     CreatChapterComponent,
     CreatFanficComponent,
     NavBarComponent,
+    CommentComponent,
   ],
   imports: [
     routing,

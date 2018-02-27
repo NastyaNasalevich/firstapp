@@ -1,11 +1,13 @@
-import {Fanfic} from "./fanfic";
-import {Rating} from "./rating";
+import {CommentComponent} from "../components/comment/comment.component";
 
-export interface Chapter {
-  id: number,
-  title: string,
-  content: string,
-  fanfic: Fanfic[],
-  comments: Comment[],
-  ratings: Rating[]
+export class Chapter {
+  id: number;
+  title: string;
+  content: "";
+  userId: number;
+  rating = 0;
+  isRated = true;
+  comments: CommentComponent[] = [];
+  fanficId: number;
 }
+

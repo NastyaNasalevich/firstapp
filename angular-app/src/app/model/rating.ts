@@ -1,7 +1,6 @@
-import {Chapter} from "./chapter";
-
-export interface Rating {
-  id: number,
-  user: Chapter,
-  value: number
+export class Rating {
+  userId: number;
+  chapterId: number;
+  amount: number;
+  totalRating: number;
 }

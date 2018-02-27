@@ -1,7 +1,13 @@
+import {Fanfic} from "./fanfic";
 
-export interface User {
-  id: number,
-  username: string,
-  email: string,
-  role: string
+export class User {
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+  token: string;
+  role: string;
+  isSendConfirm: boolean;
+  isBlocked: boolean;
+  fanfics: Fanfic[];
 }

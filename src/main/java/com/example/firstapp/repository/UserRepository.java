@@ -15,11 +15,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findUserByUsername(String username);
     User deleteUserByUsername(String username);
 
-
-    @Modifying
-    @Query("update User u set u.isBlocked = ?1 where u.id = ?2")
-    void setBlockChanges(Boolean isBlocked, Long id);
-
-    @Query("update User u set u.role = ?1 where u.id = ?2")
-    User setRoleChanges(UserRole role, Long id);
+//
+//    @Modifying
+//    @Query("update User u set u.isBlocked = ?1 where u.id = ?2")
+//    void setBlockChanges(Boolean isBlocked, Long id);
+//
+//    @Query("update User u set u.role = ?1 where u.id = ?2")
+//    User setRoleChanges(UserRole role, Long id);
 }

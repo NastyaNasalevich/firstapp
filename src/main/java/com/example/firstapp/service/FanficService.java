@@ -28,9 +28,9 @@ public class FanficService {
 
     private final FanficRepository fanficRepository;
     private final FanficListTransformer fanficListTransformer;
-    private final FanficPreviewTransformer fanficPreviewTransformer;
+//    private final FanficPreviewTransformer fanficPreviewTransformer;
 
-    private Pageable newFanfics = new PageRequest(0, 8);
+//    private Pageable newFanfics = new PageRequest(0, 8);
 
     public FanficListDto getFullFanfic(Long id) {
         return fanficListTransformer.makeDto(fanficRepository.findOne(id));
@@ -66,14 +66,14 @@ public class FanficService {
         fanficRepository.delete(id);
     }
 
-    public Map<String, Object> getMainPageFanfics() {
-        Map<String, Object> result = new HashMap<>();
-        Page<Fanfic> newFanficCurrentPage = fanficRepository.findAllByOrderByIdDesc(newFanfics);
-        result.put("page", fanficPreviewTransformer.makeDtoList(newFanficCurrentPage.getContent()));
-        newFanfics = isLastPageCheck(newFanficCurrentPage, result) ?
-                newFanfics.first() : newFanfics.next();
-        return result;
-    }
+//    public Map<String, Object> getMainPageFanfics() {
+//        Map<String, Object> result = new HashMap<>();
+//        Page<Fanfic> newFanficCurrentPage = fanficRepository.findAllByOrderByIdDesc(newFanfics);
+//        result.put("page", fanficPreviewTransformer.makeDtoList(newFanficCurrentPage.getContent()));
+//        newFanfics = isLastPageCheck(newFanficCurrentPage, result) ?
+//                newFanfics.first() : newFanfics.next();
+//        return result;
+//    }
 
     private boolean isLastPageCheck(Page<Fanfic> page, Map<String, Object> result) {
         result.put("last", !page.hasNext());

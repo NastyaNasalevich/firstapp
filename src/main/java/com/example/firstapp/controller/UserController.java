@@ -25,16 +25,16 @@ public class UserController {
         return this.userService.findAll();
     }
 
-
-    @PostMapping(value = "/block")
-    public Boolean blockUsers(@RequestBody List<UserListDto> users) {
-        return userService.setBlockingStatus(users, true);
-    }
-
-    @PostMapping(value = "/unblock")
-    public Boolean unblockUsers(@RequestBody List<UserListDto> users) {
-        return userService.setBlockingStatus(users, false);
-    }
+//
+//    @PostMapping(value = "/block")
+//    public Boolean blockUsers(@RequestBody List<UserListDto> users) {
+//        return userService.setBlockingStatus(users, true);
+//    }
+//
+//    @PostMapping(value = "/unblock")
+//    public Boolean unblockUsers(@RequestBody List<UserListDto> users) {
+//        return userService.setBlockingStatus(users, false);
+//    }
 
     @DeleteMapping(value = "/delete")
     @ResponseStatus(value = HttpStatus.OK)

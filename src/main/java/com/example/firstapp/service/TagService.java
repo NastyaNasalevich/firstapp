@@ -24,12 +24,12 @@ import java.util.Map;
 public class TagService {
 
 
-    private final FanficPreviewTransformer fanficPreviewTransformer;
+//    private final FanficPreviewTransformer fanficPreviewTransformer;
     private final TagTransformer tagTransformer;
     private final TagRepository tagRepository;
 
-    Pageable fanficsPageable = new PageRequest(0, 8);
-    Page<Fanfic> fanficsPage;
+//    Pageable fanficsPageable = new PageRequest(0, 8);
+//    Page<Fanfic> fanficsPage;
 
 
     public List<TagDto> getAllTags() {
@@ -42,27 +42,27 @@ public class TagService {
         return tagDtos;
     }
 
-    public Map<String, Object> findFanficsNextPageByTag(String tagName) {
-        Map<String, Object> result = new HashMap<>();
-        fanficsPage = tagRepository.findTagedProjectsOrderByIdDesc(tagName, fanficsPageable);
-        fanficsPageable = chooseNextPage(fanficsPage, result, fanficsPageable);
-        result.put("page", fanficPreviewTransformer.makeDtoList(fanficsPage.getContent()));
-        return result;
-    }
-
-    private Pageable chooseNextPage(Page<Fanfic> projectsPage, Map<String, Object> result, Pageable pageable) {
-        return isLastPageCheck(projectsPage, result) ? pageable.first() : pageable.next();
-    }
-
-    private boolean isLastPageCheck(Page<Fanfic> page, Map<String, Object> result) {
-        result.put("last", !page.hasNext());
-        return !page.hasNext();
-    }
+//    public Map<String, Object> findFanficsNextPageByTag(String tagName) {
+//        Map<String, Object> result = new HashMap<>();
+//        fanficsPage = tagRepository.findTagedProjectsOrderByIdDesc(tagName, fanficsPageable);
+//        fanficsPageable = chooseNextPage(fanficsPage, result, fanficsPageable);
+//        result.put("page", fanficPreviewTransformer.makeDtoList(fanficsPage.getContent()));
+//        return result;
+//    }
+//
+//    private Pageable chooseNextPage(Page<Fanfic> projectsPage, Map<String, Object> result, Pageable pageable) {
+//        return isLastPageCheck(projectsPage, result) ? pageable.first() : pageable.next();
+//    }
+//
+//    private boolean isLastPageCheck(Page<Fanfic> page, Map<String, Object> result) {
+//        result.put("last", !page.hasNext());
+//        return !page.hasNext();
+//    }
 
     public List<Tag> addAllTag(List<Tag> tags) {
         List<Tag> resultList = new ArrayList<Tag>();
         for (Tag tag: tags) {
-            Tag tempTag = tagRepository.findByName(tag.getTagName());
+            Tag tempTag = tagRepository.findByTagName(tag.getTagName());
             if(tempTag == null){
                 resultList.add(tagRepository.save(tag));
             }

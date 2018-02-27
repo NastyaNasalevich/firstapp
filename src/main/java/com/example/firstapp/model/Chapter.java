@@ -32,11 +32,11 @@ public class Chapter {
 
     @ManyToOne
     @JoinColumn(name = "main_fanfic")
-    private Fanfic mainFamnfic;
+    private Fanfic mainFanfic;
 
-    @OneToMany(mappedBy = "fanfic", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "fanfic", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
     private Set<Rating> ratings;
 }

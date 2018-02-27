@@ -46,7 +46,6 @@ public class FanficController {
         return false;
     }
 
-
     @PreAuthorize("isAuthenticated()")
     @PostMapping(value = "/update")
     public Boolean updateFanfic(@RequestBody FanficListDto fanficListDto, JwtAuthenticationToken token) {
@@ -69,9 +68,9 @@ public class FanficController {
         }
         return false;
     }
-
-    @GetMapping(value = "/main_page")
-    public Map<String, Object> getMainPageFanfics() {
-        return fanficService.getMainPageFanfics();
-    }
+//
+//    @GetMapping(value = "/main_page")
+//    public Map<String, Object> getMainPageFanfics() {
+//        return fanficService.getMainPageFanfics();
+//    }
 }

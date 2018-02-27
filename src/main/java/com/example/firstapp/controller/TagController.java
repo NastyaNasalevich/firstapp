@@ -21,9 +21,9 @@ public class TagController {
         return  tagService.getAllTags();
     }
 
-
-    @GetMapping(value = "/tag/{tagName}")
-    public Map<String, Object> getFanficsByTags(@PathVariable String tagName) {
-        return tagService.findFanficsNextPageByTag(tagName);
-    }
+//
+//    @GetMapping(value = "/tag/{tagName}")
+//    public Map<String, Object> getFanficsByTags(@PathVariable String tagName) {
+//        return tagService.findFanficsNextPageByTag(tagName);
+//    }
 }

@@ -39,12 +39,12 @@ public class UserService {
     }
 
 
-    @Transactional
-    public boolean setBlockingStatus(List<UserListDto> users, boolean block) {
-        for (UserListDto user: users) {
-            userRepository.setBlockChanges(block, user.getId());
-        }
-        return true;
-    }
+//    @Transactional
+//    public boolean setBlockingStatus(List<UserListDto> users, boolean block) {
+//        for (UserListDto user: users) {
+//            userRepository.setBlockChanges(block, user.getId());
+//        }
+//        return true;
+//    }
 
 }
