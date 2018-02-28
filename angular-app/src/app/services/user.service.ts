@@ -4,6 +4,7 @@ import {User} from "../model/user";
 import 'rxjs/add/operator/map';
 import {URL} from "../constants";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Fanfic} from "../model/fanfic";
 
 
 @Injectable()
@@ -51,5 +52,20 @@ export class UserService {
 
   create(user: User) {
     return this.http.post(URL + '/registration', user).map((response: Response) => response.json());
+  }
+
+
+  addFanficToCurrentUser(fanfic: Fanfic) {
+    let user = this.getCurrentUser();
+    user.fanfics.push(fanfic);
+    this.saveUser(user);
+  }
+
+  downloadUserFromLocalStorage() {
+    this.setUser(this.getCurrentUser());
+  }
+
+  removeUser() {
+    localStorage.removeItem('currentUser');
   }
 }

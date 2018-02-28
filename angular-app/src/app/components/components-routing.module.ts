@@ -1,16 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {HomeComponent} from './home-component/home.component';
-import {MainComponent} from './main.component';
-import {DraftComponent} from './draft-component/draft.component';
-import {ProjectComponent} from "./project-component/project.component";
-import {ProfileComponent} from "./profile-component/profile.component";
-import {ProjectsBlockComponent} from "./projects-block-component/projects-block.component";
+import {MainPageComponent} from "./main-page/main-page.component";
+import {ComponentsComponent} from "./components.component";
+import {CreateFanficComponent} from "./create-fanfic/create-fanfic.component";
+import {FanficComponent} from "./fanfic/fanfic.component";
+import {ProfileComponent} from "./profile/profile.component";
+import {FanficBlockComponent} from "./fanfic-block/fanfic-block.component";
 import {AdminComponent} from "./admin/admin.component";
-import {ConfirmationComponent} from "./confirm-component/confirmation.component";
-import {ProofedUserGuard} from "../../guards/proofedUser.guard";
-import {NoProofedUserGuard} from "../../guards/noProofedUser.guard";
-import {AdminGuard} from "../../guards/admin.guard";
+import {AdminGuard} from "../guards/admin.guard";
+import {UserGuard} from "../guards/user.guard";
 
 
 @NgModule({
@@ -18,52 +16,48 @@ import {AdminGuard} from "../../guards/admin.guard";
     RouterModule.forChild([
       {
         path: '',
-        component: MainComponent,
+        component: ComponentsComponent,
         children: [
           {
             path: '',
-            component: HomeComponent
+            component: MainPageComponent
           },
           {
             path: 'draft',
-            component: DraftComponent,
-            canActivate: [ProofedUserGuard]
+            component: CreateFanficComponent,
+            canActivate: [UserGuard]
           },
           {
-            path: 'project/:id',
-            component: ProjectComponent,
+            path: 'fanfic/:id',
+            component: FanficComponent,
 
           },
           {
             path: 'profile/:id',
             component: ProfileComponent,
-            canActivate: [NoProofedUserGuard]
+            canActivate: [UserGuard]
           },
           {
             path: 'projects/:property/:value',
-            component: ProjectsBlockComponent,
+            component: FanficBlockComponent,
             data: {preload: true}
           },
           {
             path: 'projects/:property',
-            component: ProjectsBlockComponent,
+            component: FanficBlockComponent,
             data: {preload: true}
           },
           {
             path: 'projects',
-            component: ProjectsBlockComponent,
+            component: FanficBlockComponent,
             data: {preload: true}
           },
           {
             path: 'admin',
             component: AdminComponent,
             canActivate: [AdminGuard]
-          },
-          {
-            path: 'confirmation',
-            component: ConfirmationComponent,
-            canActivate: [NoProofedUserGuard]
           }
+
 
 
         ]
@@ -74,4 +68,4 @@ import {AdminGuard} from "../../guards/admin.guard";
     RouterModule
   ]
 })
-export class MainRoutingModule {}
+export class ComponentsRoutingModule {}
