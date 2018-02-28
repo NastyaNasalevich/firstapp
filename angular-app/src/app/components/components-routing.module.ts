@@ -38,17 +38,17 @@ import {UserGuard} from "../guards/user.guard";
             canActivate: [UserGuard]
           },
           {
-            path: 'projects/:property/:value',
+            path: 'fanfics/:property/:value',
             component: FanficBlockComponent,
             data: {preload: true}
           },
           {
-            path: 'projects/:property',
+            path: 'fanfics/:property',
             component: FanficBlockComponent,
             data: {preload: true}
           },
           {
-            path: 'projects',
+            path: 'fanfics',
             component: FanficBlockComponent,
             data: {preload: true}
           },
