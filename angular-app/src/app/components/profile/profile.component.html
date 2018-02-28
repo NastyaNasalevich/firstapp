@@ -1,3 +1,38 @@
-<p>
-  profile works!
-</p>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<div class="container-fluid">
+  <div class="row backgroundPlate"></div>
+  <div class="row profileMain text-center">
+    <div class="col-sm-4 col-sm-offset-4 col-xs-12">
+      <div class="info">
+        <div class="name">
+          <strong>{{user.username}}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="tabbable-panel">
+      <div class="tabbable-line">
+        <ul class="nav nav-tabs ">
+          <li class="active">
+            <a href="#yourProjects" data-toggle="tab">
+              {{ 'Profile.userFanfics' | translate:lang }}
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="yourProjects">
+            <div class="row">
+              <div class="col-md-3 col-sm-6 col-xs-12" *ngFor="let fanfic of user.fanfics">
+                <preview  [fanfic]="fanfic"></preview>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

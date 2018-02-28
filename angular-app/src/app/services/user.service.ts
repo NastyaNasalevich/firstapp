@@ -29,4 +29,27 @@ export class UserService {
       return new RequestOptions({headers: headers});
     }
   }
+
+  setUser(user: User) {
+    this.userSource.next(user)
+  }
+
+  saveUser(user: User) {
+    if (user) {
+      localStorage.setItem('currentUser', JSON.stringify(user));
+    }
+  }
+
+  updateProfile(user: User) {
+    this.http.post(URL + '/users/update', user, this.jwt()).subscribe();
+  }
+
+  getUserById(id: number) {
+    console.log(URL + '/profile/' + id)
+    return this.http.get(URL + '/profile/' + id).map((response: Response) => response.json());
+  }
+
+  create(user: User) {
+    return this.http.post(URL + '/registration', user).map((response: Response) => response.json());
+  }
 }

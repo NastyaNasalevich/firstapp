@@ -32,6 +32,7 @@ import {RatingService} from "../services/rating.service";
 import {AdminModule} from "./admin/admin.module";
 import {ConfirmationComponent} from "./confirm-component/confirmation.component";
 import { MainPageComponent } from './main-page/main-page.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 
@@ -75,7 +76,8 @@ import { MainPageComponent } from './main-page/main-page.component';
     ProjectsBlockComponent,
     CommentComponent,
     ConfirmationComponent,
-    MainPageComponent
+    MainPageComponent,
+    RegistrationComponent
   ],
   exports: [MainComponent]
 })

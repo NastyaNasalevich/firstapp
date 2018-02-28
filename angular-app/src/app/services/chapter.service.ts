@@ -24,8 +24,8 @@ export class ChapterService {
   }
 
   verifyChapter(сhapter: Chapter): Chapter {
-    if (!сhapter.title) сhapter.title = "Название главы";
-    if (!сhapter.content) сhapter.content = "Текст главы";
+    if (!сhapter.title) сhapter.title = "Chapter name";
+    if (!сhapter.content) сhapter.content = "Chapter content";
 
     return сhapter;
   }
@@ -37,7 +37,7 @@ export class ChapterService {
   saveAsEditChapter(chapter: Chapter) {
     console.log("Save as editChapter");
     console.log(chapter);
-    localStorage.setItem('editProject', JSON.stringify(chapter));
+    localStorage.setItem('editChapter', JSON.stringify(chapter));
   }
 
   rate(rating: Rating) {

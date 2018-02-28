@@ -69,7 +69,7 @@ CREATE TABLE comments (
   id            INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
   creation_date DATE         NOT NULL,
   content       VARCHAR(255) NOT NULL,
-  project_id    VARCHAR(255) NOT NULL,
+  chapter_id    VARCHAR(255) NOT NULL,
   user_id       VARCHAR(255) NOT NULL
 );
 

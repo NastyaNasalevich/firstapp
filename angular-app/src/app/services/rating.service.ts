@@ -11,8 +11,8 @@ export class RatingService {
 
   }
 
-  checkEnable(projectId: number) {
-    return this.http.get(URL + "/rating/check/" + projectId, this.userService.jwt())
+  checkEnable(chapterId: number) {
+    return this.http.get(URL + "/rating/check/" + chapterId, this.userService.jwt())
       .map((response: Response) => response.json());
   }
 }

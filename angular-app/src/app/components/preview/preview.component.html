@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<div class="block">
+  <div class="image-preview">
+    <a routerLink="/fanfic/{{fanfic.id}}" routerLinkActive="active"><img src="{{fanfic.image}}"></a>
+  </div>
+  <div class="content">
+    <div class="fluid">
+      <div class="title">
+        <a *ngIf="fanfic.title" routerLink="/fanfic/{{fanfic.id}}" routerLinkActive="active"><p>{{project.title}}</p></a>
+        <a *ngIf="!fanfic.title" routerLink="/fanfic/{{fanfic.id}}" routerLinkActive="active"><p >{{'Preview.fanficName' | translate:lang}}</p></a>
+      </div>
+      <div class="description">
+        <p *ngIf="fanfic.description">{{fanfic.description}}</p>
+        <p *ngIf="!fanfic.description">{{'Preview.shortDesc' | translate:lang}}</p>
+      </div>
+    </div>
+    <div class="total-progress">
+      <div class="row">
+        <div class="col-xs-6">
+          <strong class="card-res-strong">{{fanfic.currentSum}} BYN</strong>
+          <div class="card-res-txt">{{'Preview.current' | translate:lang}} (0%)</div>
+        </div>
+        <div class="col-xs-6">
+          <strong class="card-res-strong">{{fanfic.leftDays}} {{'Preview.days' | translate:lang}}</strong>
+          <div class="card-res-txt">{{'Preview.left' | translate:lang}}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
