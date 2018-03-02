@@ -5,10 +5,7 @@ import { EmailConfirmComponent } from './email-confirm/email-confirm.component';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
-import {GrowlModule, InputTextModule} from "primeng/primeng";
 import {AuthComponent} from "./auth.component";
-import {Http, RequestOptions} from "@angular/http";
-import {AuthConfig, AuthHttp} from "angular2-jwt";
 import {UserService} from "../services/user.service";
 import {AuthenticationService} from "../services/authentication.service";
 
@@ -21,9 +18,7 @@ import {AuthenticationService} from "../services/authentication.service";
     ]),
     ReactiveFormsModule,
     CommonModule,
-    RouterModule,
-    InputTextModule,
-    GrowlModule
+    RouterModule
   ],
   providers: [
     UserService,

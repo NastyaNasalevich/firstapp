@@ -5,20 +5,30 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {AuthModule} from "./auth/auth.module";
-import {routing} from './app.routes';
+import {AppRoutingModule} from './app.routes';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {UserService} from "./services/user.service";
+import {AuthenticationService} from "./services/authentication.service";
+import {AdminGuard} from "./guards/admin.guard";
+import {UserGuard} from "./guards/user.guard";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
   imports: [
-    routing,
     BrowserModule,
-    FormsModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    AuthModule,
     HttpModule,
-    AuthModule
   ],
-  providers: [],
+  declarations: [
+    AppComponent
+  ],
+  providers: [
+    UserService,
+    AuthenticationService,
+    AdminGuard,
+    UserGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
