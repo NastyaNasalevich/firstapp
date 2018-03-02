@@ -4,7 +4,6 @@ import {ComponentsComponent} from "./components.component";
 import {MainPageComponent} from "./main-page/main-page.component";
 import {HeaderComponent} from "./header/header.component";
 import {ComponentsRoutingModule} from "./components-routing.module";
-// import {DraftComponent} from './draft-component/draft.component';
 import {GrowlModule, InputTextModule} from 'primeng/primeng';
 import {PreviewComponent} from "./preview/preview.component";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -20,7 +19,6 @@ import {ChapterComponent} from "./chapter/chapter.component";
 // import {GeneralInfoComponent} from "./draft-component/general-info-component/general-info.component";
 // import {DescriptionComponent} from "./draft-component/description-component/description.component";
 import {ProfileComponent} from "./profile/profile.component";
-// import {ProjectsBlockComponent} from "./projects-block-component/projects-block.component";
 // import {RatingModule} from "ng2-rating";
 import {FanficService} from "../services/fanfic.service";
 import {ChapterService} from "../services/chapter.service";
@@ -29,9 +27,9 @@ import {TagsService} from "../services/tag.service";
 import {CommentComponent} from "./comment/comment.component";
 import {CommentService} from "../services/comment.service";
 import {RatingService} from "../services/rating.service";
-// import {AdminModule} from "./admin/admin.module";
+import {AdminModule} from "./admin/admin.module";
 // import {ConfirmationComponent} from "./confirm-component/confirmation.component";
-import { RegistrationComponent } from './registration/registration.component';
+import { RegistrationComponent } from '../auth0/registration/registration.component';
 import { CreateFanficComponent } from './create-fanfic/create-fanfic.component';
 import { FanficBlockComponent } from './fanfic-block/fanfic-block.component';
 
@@ -51,7 +49,7 @@ import { FanficBlockComponent } from './fanfic-block/fanfic-block.component';
     EditorModule,
     // TagInputModule,
     // RatingModule,
-    // AdminModule,
+    AdminModule,
     GrowlModule,
   ],
   providers: [
@@ -66,7 +64,6 @@ import { FanficBlockComponent } from './fanfic-block/fanfic-block.component';
     ComponentsComponent,
     MainPageComponent,
     HeaderComponent,
-    // DraftComponent,
     PreviewComponent,
     // DragAndDropComponent,
     FanficComponent,
@@ -74,14 +71,13 @@ import { FanficBlockComponent } from './fanfic-block/fanfic-block.component';
     // GeneralInfoComponent,
     // DescriptionComponent,
     ProfileComponent,
-    // ProjectsBlockComponent,
     CommentComponent,
     // ConfirmationComponent,
     RegistrationComponent,
     CreateFanficComponent,
-    FanficBlockComponent
+    FanficBlockComponent,
   ],
   exports: [ComponentsComponent]
 })
-export class MainModule {
+export class ComponentsModule {
 }

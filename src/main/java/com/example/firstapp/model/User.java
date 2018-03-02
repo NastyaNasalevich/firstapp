@@ -35,12 +35,14 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
+
     public User(String username, String email, String password, final UserRole role) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
     }
+
 
     public void applyChanges(final User inUser) {
         this.setUsername(inUser.getUsername());

@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
-import {URL} from "../constants";
+import { environment } from 'environments/environment';
 import {UserService} from "./user.service";
 import {Chapter} from "../model/chapter";
 import {Rating} from "../model/rating";
@@ -14,12 +14,12 @@ export class ChapterService {
   }
 
   saveChapter(chapter: Chapter) {
-    return this.http.post(URL + '/chapters/create', chapter, this.userService.jwt())
+    return this.http.post(`${environment.serverUrl}/chapters/create`, chapter, this.userService.jwt())
       .map((response: Response) => response.json());
   }
 
   deleteChapter(chapter: Chapter) {
-    return this.http.post(URL + '/chapters/delete', chapter, this.userService.jwt())
+    return this.http.post(`${environment.serverUrl}/chapters/delete`, chapter, this.userService.jwt())
       .map((response: Response) => response.json());
   }
 
@@ -31,7 +31,7 @@ export class ChapterService {
   }
 
   getChapterById(id: number) {
-    return this.http.get(URL + '/chapters/' + id).map((responce: Response) => responce.json() as Chapter);
+    return this.http.get(`${environment.serverUrl}/chapters/` + id).map((responce: Response) => responce.json() as Chapter);
   }
 
   saveAsEditChapter(chapter: Chapter) {
@@ -41,7 +41,7 @@ export class ChapterService {
   }
 
   rate(rating: Rating) {
-    return this.http.post(URL + "/rating/rate", rating, this.userService.jwt())
+    return this.http.post(`${environment.serverUrl}/rating/rate`, rating, this.userService.jwt())
       .map(responce => responce.json());
   }
 }

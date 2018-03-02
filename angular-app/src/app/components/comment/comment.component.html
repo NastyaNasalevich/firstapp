@@ -6,7 +6,7 @@
 <div class="content-item" id="comments">
   <div class="container">
     <div class="col-sm-8" id="MainComment">
-      <h3>{{comments.length}} {{ 'Comments.comments' | translate:lang }}</h3>
+      <h3>{{comments.length}} {{ 'Comments.comments'}}</h3>
 
       <div *ngFor="let comment of comments; let i = index">
         <div class="media">
@@ -47,7 +47,7 @@
         <button (click)="sendComment()" class="btn btn-normal btn-success pull-right">Добавить</button>
       </div>
       <div *ngIf="!user" class="no-authenticate">
-        <p>{{ 'Comments.condition' | translate:lang }}<a>{{ 'Comments.enter' | translate:lang }}</a></p>
+        <p>{{ 'Comments.condition'}}<a>{{ 'Comments.enter'}}</a></p>
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Fanfic} from "../model/fanfic";
 import {Http, Response} from "@angular/http";
-import {URL} from "../constants";
+import { environment } from 'environments/environment';
 import {UserService} from "./user.service";
 import {User} from "../model/user";
 import 'rxjs/add/operator/map';
@@ -23,7 +23,7 @@ export class FanficService {
   }
 
   getFanficById(id: number) {
-    return this.http.get(URL + '/fanfics/' + id).map((responce: Response) => responce.json() as Fanfic);
+    return this.http.get(`${environment.serverUrl}/fanfics/` + id).map((responce: Response) => responce.json() as Fanfic);
   }
 
   saveAsEditFanfic(fanfic: Fanfic) {
@@ -46,7 +46,7 @@ export class FanficService {
   }
 
   updateFanfic(fanfic: Fanfic) {
-    this.http.post(URL + '/fanfics/update', fanfic, this.userService.jwt()).subscribe();
+    this.http.post(`${environment.serverUrl}/fanfics/update`, fanfic, this.userService.jwt()).subscribe();
   }
 
   removeDraft() {
@@ -73,14 +73,14 @@ export class FanficService {
     let currentUser: User = this.userService.getCurrentUser();
     if (currentUser && (currentUser.role === "ROLE_USER" || currentUser.role === "ROLE_ADMIN") ) {
       fanfic.userId = currentUser.id;
-      return this.http.post(URL + '/fanfics/create', JSON.stringify(fanfic), this.userService.jwt())
+      return this.http.post(`${environment.serverUrl}/fanfics/create`, JSON.stringify(fanfic), this.userService.jwt())
         .map((response: Response) => response.json());
     }
   }
 
   getFanficNextPage(property: string, type: string, value: string) {
     console.log(URL + '/fanfics/' + property + type + value);
-    return this.http.get(URL + '/fanfics/' + property + type + value)
+    return this.http.get(`${environment.serverUrl}/fanfics/` + property + type + value)
       .map((response: Response) => response.json());
   }
 }

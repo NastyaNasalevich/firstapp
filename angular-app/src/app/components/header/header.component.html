@@ -14,25 +14,25 @@
               <img src="/src/assets/images/354637.png" />
             </a>
           </li>
-          <li class="head_item"><a routerLink="/fanfics" class="head_link">{{ 'fanfics' | translate:lang }}</a></li>
+          <li class="head_item"><a routerLink="/fanfics" class="head_link">{{ 'fanfics'}}</a></li>
         </ul>
       </nav>
 
     </div>
     <div class="col-xs-6 right-col" >
       <div *ngIf="user" class="right">
-        <span class="welcome-text">{{ 'hello' | translate:lang }}</span>
+        <span class="welcome-text">{{ 'hello'}}</span>
         <a href="#" class="dropdown-toggle profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">"{{user.username}}</a>
         <ul class="dropdown-menu">
-          <li><a routerLink="/profile/{{user.id}}">{{ 'profile' | translate:lang }}</a></li>
-          <li><a routerLink="/draft">{{ 'createFanfic' | translate:lang }}</a></li>
-          <li *ngIf="isAdmin()"><a routerLink="/admin">{{ 'admin' | translate:lang }}</a></li>
-          <li><a href="#" class="exit" (click)="logOut()">{{ 'logout' | translate:lang }}</a></li>
+          <li><a routerLink="/profile/{{user.id}}">{{ 'profile'}}</a></li>
+          <li><a routerLink="/draft">{{ 'createFanfic'}}</a></li>
+          <li *ngIf="isAdmin()"><a routerLink="/admin">{{ 'admin' }}</a></li>
+          <li><a href="#" class="exit" (click)="logOut()">{{ 'logout'}}</a></li>
         </ul>
       </div>
       <div *ngIf="!user" class="right">
         <div class="row">
-          <a routerLink="/login" class="login">{{ 'login' | translate:lang }}</a>
+          <a routerLink="/login" class="login">{{ 'login'}}</a>
         </div>
       </div>
     </div>

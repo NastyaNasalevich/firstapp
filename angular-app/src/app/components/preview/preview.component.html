@@ -11,22 +11,22 @@
     <div class="fluid">
       <div class="title">
         <a *ngIf="fanfic.title" routerLink="/fanfic/{{fanfic.id}}" routerLinkActive="active"><p>{{project.title}}</p></a>
-        <a *ngIf="!fanfic.title" routerLink="/fanfic/{{fanfic.id}}" routerLinkActive="active"><p >{{'Preview.fanficName' | translate:lang}}</p></a>
+        <a *ngIf="!fanfic.title" routerLink="/fanfic/{{fanfic.id}}" routerLinkActive="active"><p >{{'Preview.fanficName'}}</p></a>
       </div>
       <div class="description">
         <p *ngIf="fanfic.description">{{fanfic.description}}</p>
-        <p *ngIf="!fanfic.description">{{'Preview.shortDesc' | translate:lang}}</p>
+        <p *ngIf="!fanfic.description">{{'Preview.shortDesc'}}</p>
       </div>
     </div>
     <div class="total-progress">
       <div class="row">
         <div class="col-xs-6">
           <strong class="card-res-strong">{{fanfic.currentSum}} BYN</strong>
-          <div class="card-res-txt">{{'Preview.current' | translate:lang}} (0%)</div>
+          <div class="card-res-txt">{{'Preview.current'}} (0%)</div>
         </div>
         <div class="col-xs-6">
-          <strong class="card-res-strong">{{fanfic.leftDays}} {{'Preview.days' | translate:lang}}</strong>
-          <div class="card-res-txt">{{'Preview.left' | translate:lang}}</div>
+          <strong class="card-res-strong">{{fanfic.leftDays}} {{'Preview.days'}}</strong>
+          <div class="card-res-txt">{{'Preview.left'}}</div>
         </div>
       </div>
 

@@ -13,13 +13,11 @@ import com.example.firstapp.service.transformer.UnconfirmedUserTransformer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.util.Optional;
 
 
 @Service
@@ -37,21 +35,16 @@ public class RegistrationService {
 
     public RegistrationResponseDto register(RegistrationRequestDto registrationRequest) {
 
-        String email = Optional.ofNullable(registrationRequest.getEmail())
-                .orElseThrow(() -> new BadCredentialsException("Email should be passed."));
-
-        String password = Optional.ofNullable(registrationRequest.getPassword())
-                .orElseThrow(() -> new BadCredentialsException("Password should be passed."));
-
-        String username = Optional.ofNullable(registrationRequest.getUsername())
-                .orElseThrow(() -> new BadCredentialsException("Username should be passed."));
-
-        checkEmailExist(email);
-        checkUsernameExist(username);
+        checkEmailExist(registrationRequest.getEmail());
+        checkUsernameExist(registrationRequest.getUsername());
         UnconfirmedUser unconfirmedUser = unconfirmedUserTransformer.makeEntity(registrationRequest);
-        unconfirmedUserRepository.save(unconfirmedUser);
-        sendConfirmationMessage(unconfirmedUser.getEmail(), unconfirmedUser.getRegistrationHash());
-        return new RegistrationResponseDto(RegistrationResponseStatus.OK.name());
+        Object check = unconfirmedUserRepository.save(unconfirmedUser);
+        if(check != null) {
+            sendConfirmationMessage(unconfirmedUser.getEmail(), unconfirmedUser.getRegistrationHash());
+            return new RegistrationResponseDto(RegistrationResponseStatus.OK.name());
+        } else {
+            throw new RegistrationException("Saving of registration data was unsuccessful.");
+        }
     }
 
     public void confirm(String confirmationHash) {
@@ -85,15 +78,26 @@ public class RegistrationService {
     }
 
     private void sendConfirmationMessage(String to, String registrationHash) {
+        MimeMessage message = javaMailSender.createMimeMessage();
         try {
-            MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setTo(to);
             helper.setSubject("Please confirm your email address");
             helper.setText("<html><body>To confirm registration go to: <a href='http://localhost:8080/registration/" + registrationHash+"'>Confirm login</a></body></html>", true);
-            javaMailSender.send(message);
+            sendEmail(message, to);
         } catch (MessagingException e) {
+            unconfirmedUserRepository.deleteByEmail(to);
+            throw new RegistrationException("Cannot send mail.\n" +
+                    "Registration data deleted.\nRecipient : " + to);
+        }
+    }
+
+    private void sendEmail(MimeMessage message, String to) {
+        try {
+            javaMailSender.send(message);
+        } catch (Exception e) {
             e.printStackTrace();
+            unconfirmedUserRepository.deleteByEmail(to);
             throw new RegistrationException("Cannot send mail.\n" +
                     "Registration data deleted.\nRecipient : " + to);
         }

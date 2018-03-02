@@ -3,7 +3,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-<p-growl [(value)]="msgs"></p-growl>
 <div class="container">
   <div class="row">
     <section>
@@ -59,14 +58,14 @@
               <div class="tab-pane" role="tabpanel" id="complete">
                 <div class="block center-block">
                   <div *ngIf="!editFanfic" class="create-header">
-                    {{ 'successfullyCreateFanfic' | translate:lang }}
+                    {{ 'successfullyCreateFanfic'}}
                   </div>
                   <div *ngIf="editFanfic" class="create-header">
-                    {{ 'clickSave' | translate:lang }}
+                    {{ 'clickSave'}}
                   </div>
                   <div class="row" style="text-align: center">
-                    <a *ngIf="!editFanfic" class="btn btn_send" (click)="send()" >{{ 'send' | translate:lang }}<i style="margin-left: 10px" class="fa fa-check"></i></a>
-                    <a *ngIf="editFanfic" class="btn btn_send" (click)="save()" >{{ 'save' | translate:lang }} <i style="margin-left: 10px" class="fa fa-check"></i></a>
+                    <a *ngIf="!editFanfic" class="btn btn_send" (click)="send()" >{{ 'send'}}<i style="margin-left: 10px" class="fa fa-check"></i></a>
+                    <a *ngIf="editFanfic" class="btn btn_send" (click)="save()" >{{ 'save'}} <i style="margin-left: 10px" class="fa fa-check"></i></a>
                   </div>
                 </div>
               </div>
@@ -75,13 +74,13 @@
           </div>
           <div class="col-xs-4" id="preview">
             <div class="block" style="text-align: center">
-              <a  class="btn  btn_save" (click)="save()">{{ 'save' | translate:lang }}</a>
+              <a  class="btn  btn_save" (click)="save()">{{ 'save'}}</a>
             </div>
           </div>
         </div>
         <div class="row main remove">
           <hr>
-          <a  *ngIf="!editFanfic" class="btn btn_remove" (click)="removeDraft()">{{ 'deletedraft' | translate:lang }}</a>
+          <a  *ngIf="!editFanfic" class="btn btn_remove" (click)="removeDraft()">{{ 'deletedraft'}}</a>
         </div>
       </div>
     </section>

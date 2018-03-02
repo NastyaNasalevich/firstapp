@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions, Response} from '@angular/http';
 import {User} from "../model/user";
 import 'rxjs/add/operator/map';
-import {URL} from "../constants";
+import { environment } from 'environments/environment';
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Fanfic} from "../model/fanfic";
 
@@ -42,16 +42,16 @@ export class UserService {
   }
 
   updateProfile(user: User) {
-    this.http.post(URL + '/users/update', user, this.jwt()).subscribe();
+    this.http.post(`${environment.serverUrl}/users/update`, user, this.jwt()).subscribe();
   }
 
   getUserById(id: number) {
-    console.log(URL + '/profile/' + id)
-    return this.http.get(URL + '/profile/' + id).map((response: Response) => response.json());
+    console.log(`${environment.serverUrl}/profile/` + id)
+    return this.http.get(`${environment.serverUrl}/profile/` + id).map((response: Response) => response.json());
   }
 
   create(user: User) {
-    return this.http.post(URL + '/registration', user).map((response: Response) => response.json());
+    return this.http.post(`${environment.serverUrl}/registration`, user).map((response: Response) => response.json());
   }
 
 

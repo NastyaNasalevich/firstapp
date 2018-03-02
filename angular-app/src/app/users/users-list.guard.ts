@@ -21,3 +21,4 @@ export class UsersListGuard implements CanActivate {
     return true;
   }
 }
+

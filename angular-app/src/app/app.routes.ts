@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: './users/users.module'
-  },
+  }
 ];
 
 export const routing = RouterModule.forRoot(routes);

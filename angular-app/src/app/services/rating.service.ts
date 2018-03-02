@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
 import {UserService} from "./user.service";
-import {URL} from "../constants";
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class RatingService {
@@ -12,7 +12,7 @@ export class RatingService {
   }
 
   checkEnable(chapterId: number) {
-    return this.http.get(URL + "/rating/check/" + chapterId, this.userService.jwt())
+    return this.http.get(`${environment.serverUrl}/rating/check/` + chapterId, this.userService.jwt())
       .map((response: Response) => response.json());
   }
 }
