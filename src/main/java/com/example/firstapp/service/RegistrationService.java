@@ -83,7 +83,7 @@ public class RegistrationService {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setTo(to);
             helper.setSubject("Please confirm your email address");
-            helper.setText("<html><body>To confirm registration go to: <a href='http://localhost:8080/registration/" + registrationHash+"'>Confirm login</a></body></html>", true);
+            helper.setText("<html><body>To confirm registration go to: <a href='http://localhost:4200/confirm?registrationHash=" + registrationHash+"'>Confirm login</a></body></html>", true);
             sendEmail(message, to);
         } catch (MessagingException e) {
             unconfirmedUserRepository.deleteByEmail(to);

@@ -6,8 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "unconfirmedUser")
-@Getter
-@Setter
+@Data
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor

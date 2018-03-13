@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<p-growl [(value)]="msgs"></p-growl>
+<div class="container">
+  <div class="row main">
+    <div class="panel-heading">
+      <div class="panel-title text-center">
+        <h1 class="title">Registration</h1>
+        <hr />
+      </div>
+    </div>
+
+    <div class="main-login main-center">
+      <form class="form-horizontal" [formGroup]="userForm">
+
+        <div class="form-group">
+          <label for="name" class="cols-sm-2 control-label">{{'username'}}</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input type="text"
+                     class="form-control"
+                     id="name"
+                     placeholder="{{'enterYouName'}}"
+                     formControlName="name"
+                     [(ngModel)]="user.username"
+                     [ngClass]="{'error' : userForm.controls['name'].hasError('required')
+                                    && (userForm.controls['name'].touched || invalid ) }"/>
+            </div>
+          </div>
+          <i *ngIf="userForm.controls['name'].hasError('required')
+                           && (userForm.controls['name'].touched || invalid )"
+             class="fa fa-exclamation-triangle error-triangle"></i>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="cols-sm-2 control-label">{{'email'}}</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+              <input type="text"
+                     class="form-control"
+                     id="email"
+                     placeholder="{{'enterYouEmail'}}"
+                     formControlName="email"
+                     [(ngModel)]="user.email"
+                     [ngClass]="{'error' : (userForm.controls['email'].hasError('required') || userForm.controls['email'].hasError('email'))
+                                    && (userForm.controls['email'].touched || invalid ) }"/>
+            </div>
+          </div>
+          <i *ngIf="(userForm.controls['email'].hasError('required') ||
+                                userForm.controls['email'].hasError('email'))
+                           && (userForm.controls['email'].touched || invalid )"
+             class="fa fa-exclamation-triangle error-triangle"></i>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="cols-sm-2 control-label">{{'password'}}</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+              <input type="password"
+                     class="form-control"
+                     id="password"
+                     placeholder="{{'enterYouPassword'}}"
+                     formControlName="password"
+                     [(ngModel)]="user.password"
+                     [ngClass]="{'error' : userForm.controls['password'].hasError('required')
+                                    && (userForm.controls['password'].touched || invalid ) }"/>
+            </div>
+          </div>
+          <i *ngIf="userForm.controls['password'].hasError('required')
+                           && (userForm.controls['password'].touched || invalid )"
+             class="fa fa-exclamation-triangle error-triangle"></i>
+        </div>
+        <div class="form-group ">
+          <button type="button" class="btn btn-primary btn-lg btn-block login-button" (click)="register()">{{'signup'}}</button>
+        </div>
+        <div class="login-register">
+          <a [routerLink]="['/login']">{{'login'}}</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>

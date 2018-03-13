@@ -47,6 +47,11 @@ dependencies {
 
 	compile group: 'com.google.guava', name: 'guava', version: '19.0'
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.1'
+//	compile group: 'javax.mail', name: 'mail', version: '1.4'
+	compile group: 'org.modelmapper', name: 'modelmapper', version: '0.7.5'
+	compile group: 'org.springframework.data', name: 'spring-data-rest-core', version: '2.0.0.RELEASE'
+//	compile group: 'javax.json', name: 'javax.json-api', version: '1.0-b01'
+
 
 	runtime('mysql:mysql-connector-java')
 }

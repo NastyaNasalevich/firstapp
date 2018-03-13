@@ -4,6 +4,7 @@ import com.example.firstapp.service.RegistrationService;
 import com.example.firstapp.service.dto.RegistrationRequestDto;
 import com.example.firstapp.service.dto.RegistrationResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,13 +18,13 @@ public class RegistrationController {
 
 
     @PostMapping
-    public RegistrationResponseDto registerUser(@RequestBody final RegistrationRequestDto registrationRequestDto) {
+    @ResponseStatus(value = HttpStatus.CREATED)
+    RegistrationResponseDto registerUser(@RequestBody final RegistrationRequestDto registrationRequestDto) {
         return registrationService.register(registrationRequestDto);
     }
 
-    @GetMapping(value = "/{registrationHash}")
-    public String confirm(@PathVariable String registrationHash) {
+    @PostMapping(value = "/confirm")
+    public void confirm(@RequestBody final String registrationHash) {
         registrationService.confirm(registrationHash);
-        return "redirect:http://localhost:8082/confirm";
     }
 }

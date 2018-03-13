@@ -1,0 +1,155 @@
+<div class="container-fluid form-style">
+  <!--<ul class="nav nav-tabs">-->
+  <!--<li class="active">-->
+  <!--<a href="#fanfic_info" data-toggle="tab" aria-expanded="true">-->
+  <!--{{'Fanfiction info'}}-->
+  <!--</a>-->
+  <!--</li>-->
+  <!--<li class="">-->
+  <!--<a href="#news" data-toggle="tab" aria-expanded="false">{{'News'}}</a>-->
+  <!--</li>-->
+  <!--<li class="">-->
+  <!--<a href="#rewards" data-toggle="tab" aria-expanded="false">{{'Rewards'}}</a>-->
+  <!--</li>-->
+  <!--<li class="">-->
+  <!--<a href="#goals" data-toggle="tab" aria-expanded="false">{{'Goals'}}</a>-->
+  <!--</li>-->
+  <!--<li class="">-->
+  <!--<a href="" data-toggle="tab" aria-expanded="false"-->
+  <!--(click)="viewFanficPage()">{{'View fanfiction page'}}</a>-->
+  <!--</li>-->
+  <!--</ul>-->
+
+  <div id="myTabContent" class="tab-content tab-content-padding-top">
+    <div class="tab-pane fade active in" id="fanfic_info">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-xs-12">
+            <h1>{{'Fanfiction title'}}</h1>
+
+            <form [formGroup]="formGroup">
+              <!--<div class="panel panel-primary">-->
+                <!--<div class="panel-heading">{{'Fanfiction image'}}</div>-->
+                <!--<div class="panel-body">-->
+                  <!--<div class="profile-picture-section">-->
+                    <!--<div ng2FileDrop [uploader]="uploader" [ng2FileDropSupportedFileTypes]="supportedFileTypes"-->
+                         <!--(ng2FileDropFileAccepted)="dragFileAccepted($event)"-->
+                         <!--class="profile-picture-section-drop-zone">-->
+                      <!--<div *ngIf="!imageShown" class="profile-picture-section-request-image-group">-->
+                        <!--<p class="profile-picture-section-request-image-instructions">{{'Drop a fanfiction picture here'}}</p>-->
+                      <!--</div>-->
+                      <!--<div *ngIf="imageShown" class="profile-picture-section-request-image-container">-->
+                        <!--<img class="profile-picture-section-request-image" [src]="currentProfileImage">-->
+                      <!--</div>-->
+                    <!--</div>-->
+                    <!--<p class="profile-picture-section-limitations">{{'Fanfiction picture can be .png, .jpeg or .gif only'}}</p>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+
+              <!--<div class="form-group">-->
+                <!--<div class="panel panel-primary">-->
+                  <!--<div class="panel-heading">{{'Title'}}</div>-->
+                  <!--<div class="panel-body">-->
+                    <!--<div class="form-group">-->
+                      <!--<input class="form-control" id="title" placeholder="{{'Title'}}"-->
+                             <!--name="title"-->
+                             <!--[(ngModel)]="fanfic.title" formControlName="title"/>-->
+                    <!--</div>-->
+                    <!--<div *ngIf="formGroup.get('title').errors && formGroup.get('title').touched"-->
+                         <!--class="alert alert-danger">-->
+                      <!--<div *ngIf="formGroup.get('title').hasError('required')">-->
+                        <!--{{'Title is required'}}.-->
+                      <!--</div>-->
+                      <!--<div *ngIf="formGroup.get('title').hasError('maxlength')">-->
+                        <!--{{'Title should be maximum'}}-->
+                        <!--{{formGroup.get('title').getError('maxlength').requiredLength}}-->
+                        <!--{{'characters'}}.-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+
+              <div class="form-group">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">{{'Fanfiction description'}}</div>
+                  <div class="panel-body">
+                    <app-text-editor
+                      [elementId]="'fanfic_description'"
+                      [value]="fanfic?.description"
+                      (onEditorKeyup)="onTextEditorKeyUp($event)">
+                    </app-text-editor>
+                  </div>
+                </div>
+              </div>
+
+              <!--<div class="form-group">-->
+              <!--<div class="panel panel-primary">-->
+              <!--<div class="panel-heading">{{'Amount minimum'}}</div>-->
+              <!--<div class="panel-body">-->
+              <!--<div class="form-group">-->
+              <!--<div class="input-group">-->
+              <!--<span class="input-group-addon">$</span>-->
+              <!--<input class="form-control" id="reward_amount_minimum" placeholder="{{'Amount minimum'}}"-->
+              <!--name="reward_amount_minimum" formControlName="amountMin"-->
+              <!--[(ngModel)]="fanfic.donateMin"/>-->
+              <!--</div>-->
+              <!--<div *ngIf="formGroup.get('amountMin').errors && formGroup.get('amountMin').touched" class="alert alert-danger">-->
+              <!--<div *ngIf="formGroup.get('amountMin').hasError('required')">-->
+              <!--{{'Minimum amount of donation is required'}}.-->
+              <!--</div>-->
+              <!--<div *ngIf="formGroup.get('amountMin').hasError('incorrectAmountFormat')">-->
+              <!--{{'Minimum amount of donation is wrong. It should be integer value and not 0'}}.-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+            </form>
+
+            <div class="form-group">
+              <div class="panel panel-primary">
+                <div class="panel-heading">{{'Fanfiction description'}}</div>
+                <div class="panel-body">
+                  <rl-tag-input [(ngModel)]="fanfic.tags" placeholder="{{'Enter some tags'}}"></rl-tag-input>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!--<div class="col-md-3 col-md-offset-1 col-sm-4 margin-bottom">-->
+          <!--<h1>{{'Fanfiction card'}}</h1>-->
+          <!--<app-fanfic-card [fanfic]="fanfic" [localImage]="currentProfileImage"></app-fanfic-card>-->
+          <!--</div>-->
+        </div>
+
+        <!--<div class="col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">-->
+          <!--<div *ngIf="errorMessage" class="alert alert-danger">-->
+            <!--{{ errorMessage }}-->
+          <!--</div>-->
+          <!--<div *ngIf="successMessage" class="alert alert-dismissible alert-info">-->
+            <!--<button type="button" class="close" data-dismiss="alert">&times;</button>-->
+            <!--{{ successMessage }}-->
+          <!--</div>-->
+          <!--<button type="submit" class="btn btn-success btn-md btn-block"-->
+                  <!--[disabled]="!formGroup.valid || !imageLoaded || submitted" (click)="onSubmit()">{{'Save'}}-->
+          <!--</button>-->
+        <!--</div>-->
+
+      </div>
+    </div>
+
+    <!--<div class="tab-pane fade" id="news">-->
+    <!--<app-news [fanficId]="fanfic.id"></app-news>-->
+    <!--</div>-->
+    <!--<div class="tab-pane fade" id="rewards">-->
+    <!--<app-rewards [fanficId]="fanfic.id"></app-rewards>-->
+    <!--</div>-->
+    <!--<div class="tab-pane fade" id="goals">-->
+    <!--<app-goals [fanficId]="fanfic.id"></app-goals>-->
+    <!--</div>-->
+  </div>
+</div>
